@@ -21,14 +21,14 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentConfiguration {
 
-	    private static WebDriver driver;
-		private static ExtentReports extent;
+	    public static WebDriver driver;
+	    public static ExtentReports extent;
 		public static final String WORKING_DIR = System.getProperty("user.dir");
-		private static final String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
-		private static final String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
-		private static final String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
-		private static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + File.separator + REPORT_NAME;
-		private static Logger logger = LogManager.getLogger(ExtentConfiguration.class.getName());
+		public static final String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
+		public static final String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
+		public static final String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
+		public static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + File.separator + REPORT_NAME;
+		public static Logger logger = LogManager.getLogger(ExtentConfiguration.class.getName());
 
 		
 		private ExtentConfiguration() {
@@ -44,7 +44,7 @@ public class ExtentConfiguration {
 		}
 
 		
-		private static void createReportsFolder() {
+		public static void createReportsFolder() {
 			File file = new File(EXTENT_REPORTS_FOLDER);
 			if (!file.exists() && !file.mkdir()) {
 			logger.warn("Failed to create directory!");
