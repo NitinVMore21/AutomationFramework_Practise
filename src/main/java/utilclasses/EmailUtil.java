@@ -11,6 +11,7 @@ public class EmailUtil {
 
     public static void sendEmailWithReport(String reportPath, String toEmail, String fromEmail, String host, String subject, String body) 
     {
+    	// one time password for gmail vibn gbln xvil enoe
         Properties properties = new Properties();
         properties.setProperty("mail.smtp.host", host);
         properties.setProperty("mail.smtp.port", "587");
@@ -19,7 +20,8 @@ public class EmailUtil {
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromEmail, "vibn gbln xvil enoe");
+                return new PasswordAuthentication(fromEmail, "Oneplus@2024");
+                
             }
         });
 

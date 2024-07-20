@@ -133,9 +133,9 @@ public class BaseClass {
     public void sendReport() {
     	
         String reportPath =  EXTENT_REPORTS_PATH;
-        String toEmail = "savi.dighade@gmail.com";
-        String fromEmail = "nitinvmore1981@gmail.com";
-        String host = "smtp.gmail.com";
+        String toEmail = "gaurav.shukla@espireinfo.co.uk";
+        String fromEmail = "nitin.more@espire.com";
+        String host = "smtp-mail.outlook.com";
         String subject = "TestNG Report";
         String body = "Please find the attached Extent Report.";
 

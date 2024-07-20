@@ -14,7 +14,7 @@ public class WebTablesTest extends BaseClass{
 	public Object[][] readExcelData()
 
 	{
-		return ExcelReader.readData("C:\\ws\\Automation_Practise\\testdataDemoqa.xlsx", "WebtablesElement");
+		return ExcelReader.readData(WORKING_DIR + "\\testdataDemoqa.xlsx", "WebtablesElement");
 		//return new ExcelReader(getClass()).readData("C:\\Users\\nitin.more\\Desktop\\TestDataForMapping.xlsx","Sheet1");
 	}
 	
