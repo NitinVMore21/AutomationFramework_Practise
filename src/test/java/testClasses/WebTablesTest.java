@@ -1,7 +1,10 @@
 package testClasses;
 
+import static org.testng.Assert.assertEquals;
+
 import java.util.Map;
 
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,6 +25,8 @@ public class WebTablesTest extends BaseClass{
 	public void validatingWebTables(Map<String, String> input) throws Exception
 	{
 		wtb.webTablesElement(input);
+		Assert.assertEquals(EXTENT_REPORTS_PATH, WORKING_DIR);
+		
 	}
 
 }
