@@ -1,5 +1,6 @@
 package testClasses;
 
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -141,4 +142,5 @@ public class BaseClass {
 
         EmailUtil.sendEmailWithReport(reportPath, toEmail, fromEmail, host, subject, body);
     }
+
 }

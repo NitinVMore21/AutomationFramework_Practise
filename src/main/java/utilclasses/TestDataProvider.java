@@ -1,9 +1,6 @@
 package utilclasses;
 
-import java.util.Map;
-
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 public class TestDataProvider {
 
@@ -12,6 +9,7 @@ public class TestDataProvider {
 	public Object[][] readExcelData()
 
 	{
+
 		return ExcelReader.readData("C:\\Users\\nitin.more\\eclipse-workspace\\Automation_Practise\\testdataDemoqa.xlsx", "WebtablesElement");
 		//return new ExcelReader(getClass()).readData("C:\\Users\\nitin.more\\Desktop\\TestDataForMapping.xlsx","Sheet1");
 	}
@@ -29,5 +27,6 @@ public class TestDataProvider {
 //		System.out.println(input.get("department"));
 //	}
 }
+
 
 

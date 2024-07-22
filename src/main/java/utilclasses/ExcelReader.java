@@ -19,6 +19,7 @@ public class ExcelReader {
 
 	public static Logger logger = Logger.getLogger(ExcelReader.class.getName());
 
+
 	 public static final String excelPath = "C:\\Users\\nitin.more\\Desktop\\TestDataForMapping.xlsx";
 
 	 public static final String sheetName = "Sheet1";
@@ -69,6 +70,19 @@ public class ExcelReader {
 //				System.out.println("the " + excelData.get(i));
 //
 //			}
+
+	
+
+			 rowData.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
+
+			for (int i = 0; i < excelData.size(); i++)
+
+			{
+
+				System.out.println("the " + excelData.get(i));
+
+			}
+
 
 		} catch (IOException e) {
 

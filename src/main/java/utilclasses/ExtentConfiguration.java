@@ -21,6 +21,7 @@ import com.aventstack.extentreports.reporter.configuration.Theme;
 
 public class ExtentConfiguration {
 
+
 	    public static WebDriver driver;
 	    public static ExtentReports extent;
 		public static final String WORKING_DIR = System.getProperty("user.dir");
@@ -30,9 +31,7 @@ public class ExtentConfiguration {
 		public static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + File.separator + REPORT_NAME;
 		public static Logger logger = LogManager.getLogger(ExtentConfiguration.class.getName());
 
-		
-		private ExtentConfiguration() {
-		}
+	
 
 		public static ExtentReports getInstance() {
 		if (extent == null) {

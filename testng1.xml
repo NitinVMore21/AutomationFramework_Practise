@@ -5,7 +5,13 @@
 		<listener class-name="utilclasses.TestListener">
 		</listener>
 	</listeners>
+<<<<<<< HEAD
   <test thread-count="5" name="Test">
+=======
+  
+  <test thread-count="5" name="Test">
+    
+>>>>>>> refs/remotes/origin/master
     <classes>
 	  <class name="testClasses.TextBoxTest"/>
 	  <class name="testClasses.CheckBoxTest"/>
