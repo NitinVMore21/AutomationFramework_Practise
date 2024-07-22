@@ -120,14 +120,9 @@ public class BaseClass {
 	    wtb = new WebTablePage(driver);
 	}
 	
-	@AfterClass
-	public void tearDown()
-{
-	if(driver != null)
-		{
-	driver.quit();
-		}
-	}
+	/*
+	 * @AfterClass public void tearDown() { if(driver != null) { driver.quit(); } }
+	 */
 	
     @AfterSuite
     public void sendReport() {

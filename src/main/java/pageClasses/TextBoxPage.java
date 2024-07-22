@@ -14,9 +14,12 @@ import utilclasses.ExtentTestManager;
 
 public class TextBoxPage {
 	
-	public WebDriver driver;
+	private WebDriver driver;
 	public JavascriptExecutor js;
 	
+	
+
+
 	@FindBy(xpath="//div[@class='element-list collapse show']//li[@id='item-0']")
 	 WebElement textBox;
 	
@@ -44,6 +47,47 @@ public class TextBoxPage {
 		PageFactory.initElements(driver, this);
 	}
 
+	public WebElement getUserName() {
+		return userName;
+	}
+
+
+
+	public WebElement getUserEmail() {
+		return userEmail;
+	}
+
+
+
+	public WebElement getCurrentAddress() {
+		return currentAddress;
+	}
+
+
+
+	public WebElement getPermanentAddress() {
+		return permanentAddress;
+	}
+
+
+
+	public WebElement getSubmit() {
+		return Submit;
+	}
+
+
+
+	public void setTextBox(WebElement textBox) {
+		this.textBox = textBox;
+	}
+
+	
+	public WebElement getTextBox() {
+		return textBox;
+	}
+	
+	
+	
 	public void textBoxElement() throws Exception
 	{
 		ExtentTest extentTest = ExtentTestManager.startTest("TextBox", "Clicking on Button");
