@@ -1,3 +1,5 @@
+
+
 package testClasses;
 
 import java.util.Map;
@@ -24,7 +26,7 @@ import utilclasses.ExcelReader;
 import utilclasses.ExtentConfiguration;
 import utilclasses.ExtentTestManager;
 
-public class Test1 extends BaseTest{
+public class Test2 extends BaseTest{
 
 	
 	@DataProvider(name = "data")
@@ -92,7 +94,7 @@ public class Test1 extends BaseTest{
 		
 	      
 		//wtb.webTablesElement(input);
-		 Assert.assertEquals(EXTENT_REPORTS_PATH, WORKING_DIR);
+		// Assert.assertEquals(EXTENT_REPORTS_PATH, WORKING_DIR);
 		// to introduce the failure
 		
 	}
