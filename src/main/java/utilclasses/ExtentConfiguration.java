@@ -78,8 +78,7 @@ public class ExtentConfiguration {
 	        String timestamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 	        String screenshotName1 = "test_" + timestamp + ".png";
 			String destinationPath =
-					"C:\\Users\\nitin.more\\eclipse-workspace\\Automation_Practise\\"
-					+ screenshotName1 + ".png";
+					WORKING_DIR+screenshotName1;
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File srcFile = ts.getScreenshotAs(OutputType.FILE);
 		try {
