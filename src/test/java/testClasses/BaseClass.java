@@ -32,7 +32,7 @@ import utilclasses.EmailUtil;
 
 public class BaseClass {
 	public static String WORKING_DIR = System.getProperty("user.dir");
-	public static String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
+	public static String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH").format(new Date());
 	public static String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
 	public static String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
 	public static String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + File.separator + REPORT_NAME;
@@ -130,17 +130,17 @@ public class BaseClass {
 		}
 	}
 	
-    @AfterSuite
-    public void sendReport() {
-    	
-        String reportPath =  EXTENT_REPORTS_PATH;
-        String toEmail = "gaurav.shukla@espireinfo.co.uk";
-        String fromEmail = "nitin.more@espire.com";
-        String host = "smtp-mail.outlook.com";
-        String subject = "TestNG Report";
-        String body = "Please find the attached Extent Report.";
-
-        EmailUtil.sendEmailWithReport(reportPath, toEmail, fromEmail, host, subject, body);
-    }
+//    @AfterSuite
+//    public void sendReport() {
+//    	
+//        String reportPath =  EXTENT_REPORTS_PATH;
+//        String toEmail = "gauravshukla01@gmail.com"; // gauravshukla01@gmail.com
+//        String fromEmail = "nitinvmore1981@gmail.com";
+//        String host = "smtp.gmail.com"; //"smtp-mail.outlook.com" smtp.office365.com smtp.gmail.com
+//        String subject = "TestNG Report";
+//        String body = "Please find the attached Extent Report.";
+//
+//        EmailUtil.sendEmailWithReport(reportPath, toEmail, fromEmail, host, subject, body);
+//    }
 
 }
