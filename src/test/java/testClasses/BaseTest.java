@@ -26,6 +26,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import pageClasses.ButtonsPage;
 import pageClasses.CheckBoxPage;
 import pageClasses.CheckoutPage;
+import pageClasses.ParagonLoginPage;
 import pageClasses.RadioButtonPage;
 import pageClasses.TextBoxPage;
 import pageClasses.WebTablePage;
@@ -48,6 +49,7 @@ public class BaseTest {
 	public ButtonsPage bp;
 	public WebTablePage wtb;
 	public Properties prop;
+	public ParagonLoginPage plp;
 	
 
 	
@@ -80,6 +82,7 @@ public class BaseTest {
 	    bp = new ButtonsPage(driver);
 	    
 	    wtb = new WebTablePage(driver);
+	    plp = new ParagonLoginPage(driver);
 	}
 
 	 @BeforeClass(alwaysRun = true)
