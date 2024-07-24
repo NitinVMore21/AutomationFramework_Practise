@@ -6,10 +6,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
+import org.w3c.dom.Node; 
 
 public class WriteFailedTestsToExcel {
 
@@ -36,34 +41,48 @@ public class WriteFailedTestsToExcel {
 
             // Get all failed test methods
             
+            NodeList testMethodNodes = doc.getElementsByTagName("class");
+            NodeList nodos = null;
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            String expression = "//class";
+          //  nodos = (NodeList) xpath.evaluate(xpath.compile(expression), doc, XPathConstants.NODESET);
+            nodos = (NodeList) xpath.compile(expression).evaluate(doc,XPathConstants.NODESET);
             
-            NodeList testMethodNodes = doc.getElementsByTagName("classes");
-
-            // Write the failed test cases to the status column (e.g., column 2 which is index 1)
-            int statusColumnNumber = 1;
-
-            for (int i = 0; i < testMethodNodes.getLength(); i++) {
-                if (testMethodNodes.item(i).getAttributes().getNamedItem("Status").getNodeValue().equalsIgnoreCase("FAIL")) {
-                    String testCaseName = testMethodNodes.item(i).getAttributes().getNamedItem("name").getNodeValue();
-
-                    // Iterate through rows to find the matching test case name
-                    for (Row row : sheet) {
-                        Cell cell = row.getCell(0); // Assuming the test case name is in the first column (index 0)
-                        if (cell != null && cell.getCellType() == CellType.STRING) {
-                            String cellValue = cell.getStringCellValue();
-                            if (cellValue.equals(testCaseName)) {
-                                Cell statusCell = row.getCell(statusColumnNumber);
-                                if (statusCell == null) {
-                                    statusCell = row.createCell(statusColumnNumber);
-                                }
-                                statusCell.setCellValue("FAIL");
-                                break;
-                            }
-                        }
-                    }
-                }
+            for (int i = 0; i < nodos.getLength(); i++) { 
+            String methodName = 	nodos.item(i).getAttributes().getNamedItem("name").getNodeValue();
+            System.out.println("Hello "+nodos.item(i).getAttributes().getNamedItem("name").getNodeValue());
             }
 
+           
+           
+			/*
+			 * for (int i = 0; i < testMethodNodes.getLength(); i++) { Node node =
+			 * testMethodNodes.item(i); System.out.println("Element Content: " +
+			 * node.getNodeName()); System.out.println("Element Content: " +
+			 * node.getNodeValue()); System.out.println("Element Content: " +
+			 * node.getNodeType()); System.out.println("Element Content: " + node.get);
+			 * 
+			 * }
+			 */ 
+            
+            // Write the failed test cases to the status column (e.g., column 2 which is index 1)
+			/*
+			 * int statusColumnNumber = 1;
+			 * 
+			 * for (int i = 0; i < testMethodNodes.getLength(); i++) { if
+			 * (testMethodNodes.item(i).getAttributes().getNamedItem("Status").getNodeValue(
+			 * ).equalsIgnoreCase("FAIL")) { String testCaseName =
+			 * testMethodNodes.item(i).getAttributes().getNamedItem("name").getNodeValue();
+			 * 
+			 * // Iterate through rows to find the matching test case name for (Row row :
+			 * sheet) { Cell cell = row.getCell(0); // Assuming the test case name is in the
+			 * first column (index 0) if (cell != null && cell.getCellType() ==
+			 * CellType.STRING) { String cellValue = cell.getStringCellValue(); if
+			 * (cellValue.equals(testCaseName)) { Cell statusCell =
+			 * row.getCell(statusColumnNumber); if (statusCell == null) { statusCell =
+			 * row.createCell(statusColumnNumber); } statusCell.setCellValue("FAIL"); break;
+			 * } } } } }
+			 */
             // Write the output to the existing Excel file
             fileInputStream.close(); // Close the input stream before writing the file
             fileOutputStream = new FileOutputStream(excelFile);
@@ -99,3 +118,4 @@ public class WriteFailedTestsToExcel {
         }
     }
 }
+
