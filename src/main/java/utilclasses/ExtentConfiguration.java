@@ -25,7 +25,7 @@ public class ExtentConfiguration {
 	    public static WebDriver driver;
 	    public static ExtentReports extent;
 		public static final String WORKING_DIR = System.getProperty("user.dir");
-		public static final String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH.mm").format(new Date());
+		public static final String TIME_STAMP = new SimpleDateFormat("dd.MM.yyyy.HH").format(new Date());
 		public static final String EXTENT_REPORTS_FOLDER = WORKING_DIR + "/AutomationReports";
 		public static final String REPORT_NAME = "ExtentReport_" + TIME_STAMP + ".html";
 		public static final String EXTENT_REPORTS_PATH = EXTENT_REPORTS_FOLDER + File.separator + REPORT_NAME;

@@ -1,6 +1,5 @@
 package pageClasses;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +19,7 @@ public class ButtonsPage {
 	public WebDriver driver;
 	public JavascriptExecutor js;
 	
-	@FindBy(xpath="//span[normalize-space()='Buttons']")
+	@FindBy(xpath="//span[normalize-space()='Button']") //s
 	 WebElement Buttons;
 	
 	@FindBy(xpath="//button[@id='doubleClickBtn']")

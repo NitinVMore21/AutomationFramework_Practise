@@ -1,4 +1,4 @@
-package utilclasses;
+package democlasses;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.FileInputStream;
 
-public class WriteFailedTestsToExcel {
+public class DemoXMLReader {
 
     public static void main(String[] args) {
         FileInputStream fileInputStream = null;
@@ -34,25 +34,39 @@ public class WriteFailedTestsToExcel {
 
             // Get all test methods under the specific class
             NodeList testMethodNodes = doc.getElementsByTagName("include");
-            
+
             // Write the failed test cases to the status column (e.g., column 5 which is index 4)
             int statusColumnNumber = 4;
 
             for (int i = 0; i < testMethodNodes.getLength(); i++) {
                 String methodName = testMethodNodes.item(i).getAttributes().getNamedItem("name").getNodeValue();
 
-                // Iterate through rows to find the matching test case name
+                boolean isMethodNameFound = false;
                 for (Row row : sheet) {
                     Cell cell = row.getCell(1); // Assuming the test case name is in the second column (index 1)
                     if (cell != null && cell.getCellType() == CellType.STRING) {
                         String cellValue = cell.getStringCellValue();
                         if (cellValue.equals(methodName)) {
-                            Cell statusCell = row.getCell(statusColumnNumber);
-                            if (statusCell == null) {
-                                statusCell = row.createCell(statusColumnNumber);
+                            isMethodNameFound = true;
+                        }
+                    }
+
+                    if (isMethodNameFound) {
+                        Cell statusCell = row.getCell(statusColumnNumber);
+                        if (statusCell == null) {
+                            statusCell = row.createCell(statusColumnNumber);
+                        }
+                        statusCell.setCellValue("FAIL");
+
+                        // Check if the next row belongs to the same test case
+                        Row nextRow = sheet.getRow(row.getRowNum() + 1);
+                        if (nextRow != null) {
+                            Cell nextCell = nextRow.getCell(1);
+                            if (nextCell == null || nextCell.getCellType() != CellType.STRING || !nextCell.getStringCellValue().isEmpty()) {
+                                isMethodNameFound = false;
                             }
-                            statusCell.setCellValue("FAIL");
-                            break;
+                        } else {
+                            isMethodNameFound = false;
                         }
                     }
                 }
@@ -93,3 +107,4 @@ public class WriteFailedTestsToExcel {
         }
     }
 }
+

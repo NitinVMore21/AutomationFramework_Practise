@@ -5,51 +5,15 @@
     <listener class-name="utilclasses.TestListener"/>
   </listeners>
   <test thread-count="5" name="Test(failed)">
-<<<<<<< HEAD
     <classes>
-      <class name="testClasses.TextBoxTest">
+      <class name="testClasses.ButtonsTest">
         <methods>
           <include name="createObject"/>
           <include name="tearDown"/>
-          <include name="initBrowser"/>
-          <include name="validatingTextBox"/>
-          <include name="sendReport"/>
-        </methods>
-      </class> <!-- testClasses.TextBoxTest -->
-      <class name="testClasses.CheckBoxTest">
-        <methods>
-          <include name="createObject"/>
-          <include name="tearDown"/>
-          <include name="validatingCheckBox"/>
-          <include name="initBrowser"/>
-          <include name="sendReport"/>
-        </methods>
-      </class> <!-- testClasses.CheckBoxTest -->
-      <class name="testClasses.RadioButtonTest">
-        <methods>
-          <include name="createObject"/>
-          <include name="tearDown"/>
-          <include name="validatingRadioButton"/>
-          <include name="initBrowser"/>
-          <include name="sendReport"/>
-        </methods>
-      </class> <!-- testClasses.RadioButtonTest -->
-=======
-    <groups>
-      <run>
-        <include name="Smoke"/>
-      </run>
-    </groups>
-    <classes>
-      <class name="testClasses.CheckBoxTest">
-        <methods>
-          <include name="createObject"/>
-          <include name="tearDown"/>
-          <include name="validatingCheckBox"/>
           <include name="setup"/>
+          <include name="validatingButtons"/>
         </methods>
-      </class> <!-- testClasses.CheckBoxTest -->
->>>>>>> refs/remotes/origin/master
+      </class> <!-- testClasses.ButtonsTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

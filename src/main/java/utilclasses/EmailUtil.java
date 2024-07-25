@@ -20,7 +20,7 @@ public class EmailUtil {
 
         Session session = Session.getInstance(properties, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(fromEmail, "Oneplus@2024");
+                return new PasswordAuthentication(fromEmail, "vibn gbln xvil enoe");
                 
             }
         });

@@ -3,24 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-<<<<<<< HEAD
-      <class name="democlasses.DemoBaseClass">
+      <class name="democlasses.ParagonTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="setup"/>
-          <include name="createPageObjects"/>
+          <include name="m1"/>
         </methods>
-      </class> <!-- democlasses.DemoBaseClass -->
-=======
-      <class name="testClasses.TextBoxTest">
-        <methods>
-          <include name="createObject"/>
-          <include name="tearDown"/>
-          <include name="setup"/>
-          <include name="validatingTextBox" invocation-numbers="1 2"/>
-        </methods>
-      </class> <!-- testClasses.TextBoxTest -->
->>>>>>> refs/remotes/origin/master
+      </class> <!-- democlasses.ParagonTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
