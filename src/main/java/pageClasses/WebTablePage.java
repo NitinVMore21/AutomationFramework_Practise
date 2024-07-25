@@ -15,7 +15,7 @@ import utilclasses.ExtentTestManager;
 
 public class WebTablePage {
 	
-	public WebDriver driver;
+	private WebDriver driver;
 	public JavascriptExecutor js;
 	
 	@FindBy(xpath="//span[normalize-space()='Web Tables']")
@@ -42,6 +42,8 @@ public class WebTablePage {
 	@FindBy(xpath="//input[@id='department']")
 	 WebElement Department;
 	
+	
+	
 	public WebTablePage(WebDriver driver) {
 		
 		this.driver = driver;
@@ -51,45 +53,45 @@ public class WebTablePage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void webTablesElement(Map<String, String> input) throws Exception
+	public WebElement getwebtTable()
 	{
-		ExtentTest extentTest = ExtentTestManager.startTest("WebTable", "Clicking on Button");
-	    
-	    js.executeScript("arguments[0].scrollIntoView();", webtTable);
-		
-	    webtTable.click();
-			
-	    Thread.sleep(2000);
-	    
-	    js.executeScript("arguments[0].scrollIntoView();", addButton);
-		
-	    addButton.click();
-			
-	    Thread.sleep(2000);
-	    
-	    js.executeScript("arguments[0].scrollIntoView();", firstName);
-		
-	    firstName.sendKeys(input.get("firstName"));
-			
-	    Thread.sleep(2000);
-	    
-	    lastName.sendKeys(input.get("lastName"));
-	    
-	    userEmail.sendKeys(input.get("userEmail"));
-	    
-	    Age.sendKeys(input.get("age"));
-	    
-	    Salary.sendKeys(input.get("salary"));
-	    
-	    Department.sendKeys(input.get("department"));
-	    
-		ExtentTestManager.getTest().log(Status.INFO, "clicking Submit");
-		
-		ExtentConfiguration.addStepWithScreenshotInReport(driver, "Test.png", Status.DEBUG);
-	    
-	    Actions act = new Actions(driver);
-	    
-	    act.sendKeys(Keys.ENTER).build().perform();
+		return webtTable;
 	}
+	
+	public WebElement getaddButton()
+	{
+		return addButton;
+	}
+	
+	public WebElement getfirstName()
+	{
+		return firstName;
+	}
+	
+	public WebElement getlastName()
+	{
+	  return lastName;
+	}
+	
+	public WebElement getuserEmail()
+	{
+		return userEmail;
+	}
+	
+	public WebElement getAge()
+	{
+		return Age;
+	}
+	
+	public WebElement getSalary()
+	{
+		return Salary;
+	}
+	
+	public WebElement getDepartment()
+	{
+		return Department;
+	}
+
 
 }

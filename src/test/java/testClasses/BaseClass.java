@@ -24,6 +24,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import pageClasses.ButtonsPage;
 import pageClasses.CheckBoxPage;
 import pageClasses.CheckoutPage;
+import pageClasses.ParagonLoginPage;
 import pageClasses.RadioButtonPage;
 import pageClasses.TextBoxPage;
 import pageClasses.WebTablePage;
@@ -44,71 +45,29 @@ public class BaseClass {
 	public ButtonsPage bp;
 	public WebTablePage wtb;
 	public Properties prop;
+	public ParagonLoginPage plp;
+
 	
-
-
-	 @BeforeClass(alwaysRun = true)
-     public void setup() throws Exception {
-        loadProperties();
-        initBrowser();
-        driver.manage().window().maximize();
-        driver.get(prop.getProperty("testurl"));
-        performInitialActions();
-    }
-
-    public void loadProperties() throws IOException {
-        prop = new Properties();
-        String propFilePath = WORKING_DIR + System.getProperty("file.separator") + "/conf.properties";
-        prop.load(new FileReader(propFilePath));
-    }
-
-    public WebDriver initBrowser() throws Exception {
-    	
-        String browser = prop.getProperty("browser").toLowerCase();
-        switch (browser) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--remote-allow-origins=*");
-                chromeOptions.addArguments("--headless");
-                driver = new ChromeDriver(chromeOptions);
-                chromeOptions.setHeadless(true);
-                break;
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless");
-                driver = new FirefoxDriver(firefoxOptions);
-                firefoxOptions.setHeadless(true);
-                break;
-            case "edge":
-                WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--remote-allow-origins=*");
-                edgeOptions.addArguments("--headless");
-                driver = new EdgeDriver(edgeOptions);
-                edgeOptions.setHeadless(true);
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported browser: " + browser);
-        }
-        return driver;
-    }
-
-    private void performInitialActions() throws InterruptedException {
-        js = (JavascriptExecutor) driver;
-        WebElement element = driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M16 132h41')]"));
-        js.executeScript("arguments[0].scrollIntoView();", element);
-        element.click();
-        Thread.sleep(2000);
-    }
-	
-	@BeforeMethod
-	
-	public void createObject()
-	{ 
-		//cop = new CheckTextoutPage(driver);
+	public WebDriver getWebDriver() {
 		
+		 try {
+			loadProperties();
+			initBrowser();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	        
+		return driver;
+		
+	}
+	
+	
+	public void instantiatePOMClasses() {
+		// instantiate the pom classes
 		cob = new CheckBoxPage(driver);
 		
 		rob = new RadioButtonPage(driver);
@@ -118,22 +77,95 @@ public class BaseClass {
 	    bp = new ButtonsPage(driver);
 	    
 	    wtb = new WebTablePage(driver);
+	    plp = new ParagonLoginPage(driver);
 	}
-	
+
+	@BeforeClass(alwaysRun = true)
+	public void setup() throws Exception {
+		loadProperties();
+		//initBrowser();
+		//driver.manage().window().maximize();
+		//driver.get(prop.getProperty("testurl"));
+		//performInitialActions();
+	}
+
+	public void loadProperties() throws IOException {
+		prop = new Properties();
+		String propFilePath = WORKING_DIR + System.getProperty("file.separator") + "/conf.properties";
+		prop.load(new FileReader(propFilePath));
+	}
+
+	public WebDriver initBrowser() throws Exception {
+
+		String browser = prop.getProperty("browser").toLowerCase();
+		switch (browser) {
+		case "chrome":
+			WebDriverManager.chromedriver().setup();
+			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--remote-allow-origins=*");
+			//chromeOptions.addArguments("--headless");
+			driver = new ChromeDriver(chromeOptions);
+			//chromeOptions.setHeadless(true);
+			break;
+		case "firefox":
+			WebDriverManager.firefoxdriver().setup();
+			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			firefoxOptions.addArguments("--headless");
+			driver = new FirefoxDriver(firefoxOptions);
+			firefoxOptions.setHeadless(true);
+			break;
+		case "edge":
+			WebDriverManager.edgedriver().setup();
+			EdgeOptions edgeOptions = new EdgeOptions();
+			edgeOptions.addArguments("--remote-allow-origins=*");
+			//edgeOptions.addArguments("--headless");
+			driver = new EdgeDriver(edgeOptions);
+			//edgeOptions.setHeadless(true);
+			break;
+		default:
+			throw new IllegalArgumentException("Unsupported browser: " + browser);
+		}
+		return driver;
+	}
+
+	private void performInitialActions() throws InterruptedException {
+		js = (JavascriptExecutor) driver;
+		WebElement element = driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M16 132h41')]"));
+		js.executeScript("arguments[0].scrollIntoView();", element);
+		element.click();
+		Thread.sleep(2000);
+	}
+
+	@BeforeMethod
+
+	public void createObject() {
+		// cop = new CheckTextoutPage(driver);
+
+		cob = new CheckBoxPage(driver);
+
+		rob = new RadioButtonPage(driver);
+
+		tbp = new TextBoxPage(driver);
+
+		bp = new ButtonsPage(driver);
+
+		wtb = new WebTablePage(driver);
+	}
+
 	/*
 	 * @AfterClass public void tearDown() { if(driver != null) { driver.quit(); } }
 	 */
-	
-    @AfterSuite
-    public void sendReport() {
-    	
-        String reportPath =  EXTENT_REPORTS_PATH;
-        String toEmail = "gaurav.shukla@espireinfo.co.uk";
-        String fromEmail = "nitin.more@espire.com";
-        String host = "smtp-mail.outlook.com";
-        String subject = "TestNG Report";
-        String body = "Please find the attached Extent Report.";
 
-        EmailUtil.sendEmailWithReport(reportPath, toEmail, fromEmail, host, subject, body);
-    }
+	/*@AfterSuite
+	public void sendReport() {
+
+		String reportPath = EXTENT_REPORTS_PATH;
+		String toEmail = "gaurav.shukla@espireinfo.co.uk";
+		String fromEmail = "nitin.more@espire.com";
+		String host = "smtp-mail.outlook.com";
+		String subject = "TestNG Report";
+		String body = "Please find the attached Extent Report.";
+
+		EmailUtil.sendEmailWithReport(reportPath, toEmail, fromEmail, host, subject, body);
+	}*/
 }

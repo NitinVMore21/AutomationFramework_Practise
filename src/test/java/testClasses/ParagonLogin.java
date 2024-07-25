@@ -5,59 +5,65 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
+import utilclasses.ExtentConfiguration;
+import utilclasses.ExtentTestManager;
+
 public class ParagonLogin extends BaseTest {
 
 	@SuppressWarnings("deprecation")
 	@Test
-	public void validateParagonWebsite() throws InterruptedException
-	{
-		
+	public void validateParagonWebsite() throws InterruptedException {
+
+		// instantiate an object of webdriver
 		getWebDriver();
 		instantiatePOMClasses();
-		driver.get("https://uat.paragon-epro.com/login");
+
+		// Step 1--Launch URL
 		driver.manage().window().maximize();
+		driver.get(prop.getProperty("testurl"));
+
+		ExtentTest extentTest = ExtentTestManager.startTest("Login", "URL Launched");
+		ExtentTestManager.getTest().log(Status.INFO, " STEP 01 application launched");
+		ExtentConfiguration.addStepWithScreenshotInReport(driver, "Test.png", Status.DEBUG);
+
 		System.out.println("URL Launched");
-		
-		//Enter username
+
+		// Step 2--Enter username
 		plp.getUserName().sendKeys("test");
 		Thread.sleep(2000);
-		/*driver.findElement(By.name("userName")).sendKeys("test");
-		System.out.println("Username- test");
-		Thread.sleep(2000);*/
-		
-		//Enter password
+		ExtentTestManager.getTest().log(Status.INFO, " STEP 02 Enter Username");
+		ExtentConfiguration.addStepWithScreenshotInReport(driver, "Test.png", Status.DEBUG);
+
+		// Step 3--Enter password
 		plp.getPassword().sendKeys("test1");
 		Thread.sleep(2000);
-		/*driver.findElement(By.name("password")).sendKeys("test1");
-		System.out.println("Password- test1");*/
-		Thread.sleep(2000);
-		
-		//Click on checkbox
-		
-		
-		//new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(plp.getCaptcha()));
-		// reCAPTCHA
-		
-		new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")));
+		ExtentTestManager.getTest().log(Status.INFO, " STEP 03 Enter Password");
+		ExtentConfiguration.addStepWithScreenshotInReport(driver, "Test.png", Status.DEBUG);
 
-	//	new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.recaptcha-checkbox-checkmark"))).click();
-		new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='recaptcha-anchor-label']"))).click();
-		
-		//driver.switchTo().frame("a-");
-		//driver.switchTo().frame(0);
-		Thread.sleep(7000);
-	
-		
+		// Step 4--Click on Captcha checkbox
+
+		new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(
+				"//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")));
+		new WebDriverWait(driver, 20)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='recaptcha-anchor-label']"))).click();
+
+		Thread.sleep(2000);
+		ExtentTestManager.getTest().log(Status.INFO, " STEP 04 Captcha checkbox selected");
+		ExtentConfiguration.addStepWithScreenshotInReport(driver, "Test.png", Status.DEBUG);
+
 		System.out.println("captcha selected");
+
+		// Step 5--Click on login button
+
 		driver.switchTo().defaultContent();
-		//Click on login
-	//	plp.getSubmitButton().click();
-		//driver.findElement(By.xpath("//button[@type='submit' and @class='mat-focus-indicator login100-form-btn mat-raised-button mat-button-base']")).click();
-		driver.findElement(By.xpath("//button")).click();
-		System.out.println("submit button clicked");
-		
-		
+		plp.getSubmitButton().click();
+		ExtentTestManager.getTest().log(Status.INFO, " STEP 05 Click on Login button");
+		ExtentConfiguration.addStepWithScreenshotInReport(driver, "Test.png", Status.DEBUG);
+
+		System.out.println("Login button clicked");
 	}
-	
-	
+
 }

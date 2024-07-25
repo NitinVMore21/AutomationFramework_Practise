@@ -12,7 +12,7 @@ import utilclasses.ExtentTestManager;
 
 public class RadioButtonPage {
 	
-	public WebDriver driver;
+	private WebDriver driver;
 	public JavascriptExecutor js;
 	
 	@FindBy(xpath="//span[normalize-space()='Radio Button']")
@@ -31,24 +31,21 @@ public class RadioButtonPage {
 	
 	}
 
-     public void RadiobuttonElement() throws InterruptedException {
-		
-    	 ExtentTest extentTest = ExtentTestManager.startTest("RadioButton", "Clicking on Button");
- 	    
- 	    js.executeScript("arguments[0].scrollIntoView();", radioButton);
- 		
- 	    radioButton.click();
- 			
- 	    Thread.sleep(2000);
- 	  
- 	    js.executeScript("arguments[0].scrollIntoView();", yesButton);
- 	    
-		ExtentTestManager.getTest().log(Status.INFO, "clicking Yes");
-		
-		ExtentConfiguration.addStepWithScreenshotInReport(driver, "test1.png", Status.DEBUG);
- 		
-		yesButton.click();
- 			
- 	    Thread.sleep(2000);
-	}
+  public void setradioButton(WebElement radioButton)
+  {
+	  this.radioButton=radioButton;
+  }
+  
+  public WebElement getradioButton()
+  {
+	  return radioButton;
+  }
+  
+  public WebElement getyesButton()
+  {
+	  return yesButton;
+  }
+    
 }
+
+	

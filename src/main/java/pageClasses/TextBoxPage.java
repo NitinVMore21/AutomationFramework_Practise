@@ -88,7 +88,7 @@ public class TextBoxPage {
 	
 	
 	
-	public void textBoxElement() throws Exception
+	/*public void textBoxElement() throws Exception
 	{
 		ExtentTest extentTest = ExtentTestManager.startTest("TextBox", "Clicking on Button");
 		
@@ -119,6 +119,6 @@ public class TextBoxPage {
 	    act.sendKeys(Keys.ENTER).build().perform();
 	    
 	    Submit.click();
-	}
+	}*/
 
 }

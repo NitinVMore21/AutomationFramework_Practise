@@ -35,7 +35,16 @@ public class ButtonsPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void buttonsElement() throws Exception
+	public WebElement getButtons()
+	{
+		return Buttons;
+	}
+	
+	public WebElement getDoubleClicks()
+	{
+		return DoubleClick;
+	}
+	/*public void buttonsElement() throws Exception
 	{
 		ExtentTest extentTest = ExtentTestManager.startTest("ButtonTest", "Clicking on Button");
 		
@@ -56,5 +65,5 @@ public class ButtonsPage {
         act.doubleClick(DoubleClick);
 			
 	    Thread.sleep(2000);
-	}
+	}*/
 }

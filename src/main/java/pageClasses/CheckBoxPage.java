@@ -33,8 +33,21 @@ public class CheckBoxPage {
 		PageFactory.initElements(driver, this);
 	}
 
+	public void setbutton(WebElement button) {
+		this.button = button;
+	}
 
-	public void CheckboxElement() throws InterruptedException {
+	
+	public WebElement getbutton() {
+		return button;
+	}
+	
+	public WebElement getselectButton()
+	{
+		return selectButton;
+	}
+
+	/*public void CheckboxElement() throws InterruptedException {
 		
 		ExtentTest extentTest = ExtentTestManager.startTest("CheckBox", "Clicking on Button");
 		
@@ -49,5 +62,8 @@ public class CheckBoxPage {
 		ExtentConfiguration.addStepWithScreenshotInReport(driver, "test1.png", Status.DEBUG);
 		
 		selectButton.click();
-	}
+	}*/
 }
+
+
+	
