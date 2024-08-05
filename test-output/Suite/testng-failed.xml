@@ -12,6 +12,7 @@
           <include name="tearDown"/>
           <include name="setup"/>
           <include name="validatingButtons"/>
+          <include name="sendReport"/>
         </methods>
       </class> <!-- testClasses.ButtonsTest -->
     </classes>

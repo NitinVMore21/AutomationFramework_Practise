@@ -14,15 +14,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 public class ExcelReader {
-	
+
 	public static DataFormatter dataFormatter = new DataFormatter();
 
 	public static Logger logger = Logger.getLogger(ExcelReader.class.getName());
 
 
-	 public static final String excelPath = "C:\\Users\\nitin.more\\Desktop\\TestDataForMapping.xlsx";
+	public static final String excelPath = "C:\\Users\\nitin.more\\Desktop\\TestDataForMapping.xlsx";
 
-	 public static final String sheetName = "Sheet1";
+	public static final String sheetName = "Sheet1";
 
 	public ExcelReader(Class<? extends TestDataProvider> class1) 
 	{
@@ -38,7 +38,7 @@ public class ExcelReader {
 
 		{
 			FileInputStream fis = new FileInputStream(excelPath);
-			
+
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
 			XSSFSheet sheet = workbook.getSheet(sheetName);
@@ -63,17 +63,17 @@ public class ExcelReader {
 
 			// rowData.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
 
-//			for (int i = 0; i < excelData.size(); i++)
-//
-//			{
-//
-//				System.out.println("the " + excelData.get(i));
-//
-//			}
+			//			for (int i = 0; i < excelData.size(); i++)
+			//
+			//			{
+			//
+			//				System.out.println("the " + excelData.get(i));
+			//
+			//			}
 
-	
 
-			 rowData.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
+
+			rowData.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
 
 			for (int i = 0; i < excelData.size(); i++)
 

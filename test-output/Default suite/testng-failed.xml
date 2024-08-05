@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="democlasses.ParagonTest">
+      <class name="democlasses.Sweply">
         <methods>
-          <include name="m1"/>
+          <include name="login"/>
         </methods>
-      </class> <!-- democlasses.ParagonTest -->
+      </class> <!-- democlasses.Sweply -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

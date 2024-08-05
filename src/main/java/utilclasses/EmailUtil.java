@@ -9,7 +9,7 @@ import javax.mail.internet.*;
 
 public class EmailUtil {
 
-    public static void sendEmailWithReport(String reportPath, String toEmail, String fromEmail, String host, String subject, String body) 
+    public static void sendEmailWithReport(String excelReportPath, String extentReportPath, String toEmail, String fromEmail, String host, String subject, String body) 
     {
     	// one time password for gmail vibn gbln xvil enoe
         Properties properties = new Properties();
@@ -41,11 +41,18 @@ public class EmailUtil {
 
             // Attachment part
             messageBodyPart = new MimeBodyPart();
-            DataSource source = new FileDataSource(reportPath);
-            messageBodyPart.setDataHandler(new DataHandler(source));
+            DataSource extentsource = new FileDataSource(extentReportPath);
+            messageBodyPart.setDataHandler(new DataHandler(extentsource));
             messageBodyPart.setFileName("extent.html");
             multipart.addBodyPart(messageBodyPart);
 
+            // Attachment: Excel report
+            messageBodyPart = new MimeBodyPart();
+            DataSource excelSource = new FileDataSource(excelReportPath);
+            messageBodyPart.setDataHandler(new DataHandler(excelSource));
+            messageBodyPart.setFileName("Excel_Report.xlsx"); // Set the file name for Excel report
+            multipart.addBodyPart(messageBodyPart);
+            
             // Send the complete message parts
             message.setContent(multipart);
 

@@ -130,17 +130,18 @@ public class BaseClass {
 		}
 	}
 	
-//    @AfterSuite
-//    public void sendReport() {
-//    	
-//        String reportPath =  EXTENT_REPORTS_PATH;
-//        String toEmail = "gauravshukla01@gmail.com"; // gauravshukla01@gmail.com
-//        String fromEmail = "nitinvmore1981@gmail.com";
-//        String host = "smtp.gmail.com"; //"smtp-mail.outlook.com" smtp.office365.com smtp.gmail.com
-//        String subject = "TestNG Report";
-//        String body = "Please find the attached Extent Report.";
-//
-//        EmailUtil.sendEmailWithReport(reportPath, toEmail, fromEmail, host, subject, body);
-//    }
+    @AfterSuite
+    public void sendReport() {
+    	
+    	String extentReportPath = EXTENT_REPORTS_PATH ;
+        String excelReportPath = "D:\\eclipse_workspace\\Automation_Practise\\AutomationFramework_Practise\\TestCases_Report.xlsx" ; //
+        String toEmail = "gauravshukla01@gmail.com"; // gauravshukla01@gmail.com
+        String fromEmail = "nitinvmore1981@gmail.com";
+        String host = "smtp.gmail.com"; //"smtp-mail.outlook.com" smtp.office365.com smtp.gmail.com
+        String subject = "TestNG Report";
+        String body = "Please find the attached Extent Report.";
+
+        EmailUtil.sendEmailWithReport(excelReportPath,extentReportPath, toEmail, fromEmail, host, subject, body);
+    }
 
 }
