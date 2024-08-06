@@ -42,11 +42,7 @@ public class Create_CampaignClass extends BaseTest {
 		BaseAction ba = new BaseAction();
 		
 		js = (JavascriptExecutor) driver;
-		//wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		//check ck = new check();
-		//ck.uploadFile();
 	
-		//driver = new ChromeDriver();
 		
 		driver.get("https://uat.paragon-epro.com/");
 		 driver.manage().window().maximize();
@@ -67,19 +63,19 @@ public class Create_CampaignClass extends BaseTest {
         
         //new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(plp.getCaptcha()));
         // reCAPTCHA
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")));
+      
+  //      wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[starts-with(@name, 'a-') and starts-with(@src, 'https://www.google.com/recaptcha')]")));
 
    //   new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.recaptcha-checkbox-checkmark"))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='recaptcha-anchor-label']"))).click();
+    //    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='recaptcha-anchor-label']"))).click();
         
         //driver.switchTo().frame("a-");
         //driver.switchTo().frame(0);
-        Thread.sleep(7000);
+        //Thread.sleep(7000);
    
         
-        System.out.println("captcha selected");
-        driver.switchTo().defaultContent();
+      //  System.out.println("captcha selected");
+      //  driver.switchTo().defaultContent();
         //Click on login
    //   plp.getSubmitButton().click();
         //driver.findElement(By.xpath("//button[@type='submit' and @class='mat-focus-indicator login100-form-btn mat-raised-button mat-button-base']")).click();
@@ -93,6 +89,7 @@ public class Create_CampaignClass extends BaseTest {
         Actions action = new Actions(driver);
         // webelement for side nav
         Thread.sleep(3000);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sideNav']"))).click();
         //WebElement ele = driver.findElement(By.xpath("//*[@id='sideNav']"));
 //      action.moveToElement(ele);

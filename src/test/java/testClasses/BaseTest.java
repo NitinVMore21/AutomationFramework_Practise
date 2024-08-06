@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
@@ -115,6 +117,45 @@ public class BaseTest {
      }
      
 	} // end of method for retry
+	
+	
+	// method for table navigations amd text extraction
+	// input to this method is the xpath of the table till the tbody part
+	public String getTextFrmTableBody(String baseXpath, String searchItem, int colIndex) throws InterruptedException {
+		String finalText = null;
+		
+		// two loops.. first one iterates the total number of rows and second iterates the cols within a specific row
+		List<WebElement> listEle =  driver.findElements(By.xpath(baseXpath));
+		
+		// get the number of cols
+		Thread.sleep(3000);
+			List<WebElement> listCols = driver.findElements(By.xpath("//*[@role='table']/thead/tr/th"));
+		
+		// iterate the rows of the table
+		
+		  for (int i=0; i< listEle.size() ; i++) { // iterate the cols of the table
+		  for (int j =1; j<=listCols.size(); j++) {
+			  int k = i+1;
+			 WebElement test = listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+j+"]"));
+		  
+		  if (searchItem.equalsIgnoreCase(test.getText())) {
+			  WebElement targeEle =
+					     listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+colIndex+"]"));
+			  finalText = targeEle.getText();
+			  } // end of if
+		  
+		  
+		  } // end of j loop
+		 	
+		} // end of for loop
+		
+		
+		
+		
+		return finalText;
+	}
+	
+	
 	
 	 @BeforeClass(alwaysRun = true)
      public void setup() throws Exception {
