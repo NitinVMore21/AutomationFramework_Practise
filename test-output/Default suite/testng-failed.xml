@@ -3,11 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="democlasses.Sweply">
+      <class name="paragondemo.Create_CampaignClass">
         <methods>
-          <include name="login"/>
+          <include name="createObject"/>
+          <include name="Automate"/>
+          <include name="setup"/>
+          <include name="sendReport"/>
         </methods>
-      </class> <!-- democlasses.Sweply -->
+      </class> <!-- paragondemo.Create_CampaignClass -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
