@@ -88,8 +88,8 @@ public class NavigationTest extends BaseTest {
        
        // click logout 
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='navbarDropdownMenuLink']"))).click();
-       
-       
+     //*[@class='dropdown-menu profilebox show']/a[text()='Log out']
+       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='dropdown-menu profilebox show']/a[text()='Log out']"))).click();
        // click on sdie nav then click on finance and then click on po
 		/*
 		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
