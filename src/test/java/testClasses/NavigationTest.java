@@ -74,7 +74,7 @@ public class NavigationTest extends BaseTest {
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search..']"))).click();
        
        // click on the specific campaign -- //*[text()='UT01108']
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='UT01108']"))).click();
+       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='UT01118']"))).click();
        // create xpath for the campaign based on the date created + status + user/account manager
        
        // click on send po button

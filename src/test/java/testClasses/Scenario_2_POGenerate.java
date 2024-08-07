@@ -72,73 +72,47 @@ public class Scenario_2_POGenerate extends BaseTest {
   //   driver.findElement(By.xpath("//*[text()=' Campaigns']")).click();
      
        
+       // click on the search icon to get the context on the base page
+       
+       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search..']"))).click();
+       
        // click on the specific campaign -- //*[text()='UT01108']
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='UT01108']"))).click();
+       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='UT01118']"))).click();
        // create xpath for the campaign based on the date created + status + user/account manager
-       
+       //aria-describedby="cdk-describedby-message-46"
        // click on send po button
-       retryMechanism(driver.findElement(By.xpath("//button[@aria-describedby='cdk-describedby-message-22']")));
+       retryMechanism(driver.findElement(By.xpath("//table[@role=\"table\"]//tbody/tr[1]/td/button[not(@hidden)]//img[@src='assets/images/send-for-approval.svg']")));
        Thread.sleep(3000);
-       String parent=driver.getWindowHandle();
-       Set<String>s=driver.getWindowHandles();
-       // Now iterate using Iterator
-       Iterator<String> I1= s.iterator();
-       while(I1.hasNext()) {
-    	   System.out.println("this is parent child -- " +parent);
-    	   String child_window=I1.next();
-    	   System.out.println("this is first child -- " +child_window);
-       }
-       retryMechanism(driver.findElement(By.xpath("//button[@aria-describedby='cdk-describedby-message-29']")));
-      
-       // add assertion for status update-- PO approved
-       
-       //click on create po
-       retryMechanism(driver.findElement(By.xpath("//button[@aria-describedby='cdk-describedby-message-23']")));
-       // click on close button
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='mat-focus-indicator mat-stroked-button mat-button-base']"))).click();
-       //retryMechanism(driver.find)
-       
-       // click on Supporting document section
-       retryMechanism(driver.findElement(By.xpath("//*[text()='Supporting Documents']")));
-       // extract the PO number
-       
-       // click on sdie nav then click on finance and then click on po
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sideNav']"))).click();
-       // click on workflow icon
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()=' Finance ']"))).click();
-       
-       // click on campaign icon
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='PO Management']"))).click();
-       
+       //click on Yes in the pop up
+       retryMechanism(driver.findElement(By.xpath("//button[@type='submit']//span[contains(text(),' Yes')]")));
+		/*
+		 * retryMechanism(driver.findElement(By.xpath(
+		 * "//button[@aria-describedby='cdk-describedby-message-29']")));
+		 * 
+		 * // add assertion for status update-- PO approved
+		 * 
+		 * //click on create po retryMechanism(driver.findElement(By.xpath(
+		 * "//button[@aria-describedby='cdk-describedby-message-23']"))); // click on
+		 * close button wait.until(ExpectedConditions.elementToBeClickable(By.
+		 * xpath("//button[@class='mat-focus-indicator mat-stroked-button mat-button-base']"
+		 * ))).click(); //retryMechanism(driver.find)
+		 * 
+		 * // click on Supporting document section retryMechanism(driver.findElement(By.
+		 * xpath("//*[text()='Supporting Documents']"))); // extract the PO number
+		 * 
+		 * // click on sdie nav then click on finance and then click on po
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
+		 * "//*[@id='sideNav']"))).click(); // click on workflow icon
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.
+		 * xpath("//*[text()=' Finance ']"))).click();
+		 * 
+		 * // click on campaign icon
+		 * wait.until(ExpectedConditions.elementToBeClickable(By.
+		 * xpath("//a[normalize-space()='PO Management']"))).click();
+		 */ 
        
 
-       
-	/*
-	 * //Click on Back to Campaign WebElement BckToCampaign =
-	 * driver.findElement(By.xpath("//i[@class='fas fa-chevron-circle-left fa-3x']")
-	 * ); // js.executeScript("arguments[0].scrollIntoView();", BckToCampaign);
-	 * js.executeScript("window.scrollTo(0, 0);"); //
-	 * js.executeScript("arguments[0].scrollIntoView();", BckToCampaign);
-	 * ba.retryMechanism(driver,BckToCampaign); //
-	 * retryMechanism(driver,BckToCampaign); Thread.sleep(2000);
-	 */
-        
-			/*
-			 * //Click on Edit button on campaign page WebElement editBtn =
-			 * driver.findElement(By.
-			 * xpath("//button[@class='mat-focus-indicator mat-tooltip-trigger buttonSize mat-button mat-button-base cdk-focus']"
-			 * )); js.executeScript("arguments[0].scrollIntoView();", editBtn);
-			 * ba.retryMechanism(driver,editBtn);
-			 */    
-        
-       //retryMechanism(RESET);
-       
-  //   new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='BusinessUnitId']"))).click();
-       
-       // click on select value within the box
-  //    WebElement element1 = driver.findElement(By.xpath("//span[normalize-space()='PCC UK Lead Supply']"));
-       //new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='PCC UK Lead Supply']"))).click();
-       
+      
        
   }
 
