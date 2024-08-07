@@ -156,6 +156,90 @@ public class BaseTest {
 	}
 	
 	
+	public String handleWebTable(String baseXpath, String searchItem, int colIndex, String actionRequired) throws InterruptedException {
+		String finalText = null;
+		 WebElement test;
+		// two loops.. first one iterates the total number of rows and second iterates the cols within a specific row
+		List<WebElement> listEle =  driver.findElements(By.xpath(baseXpath));
+		// get the number of cols
+		Thread.sleep(3000);
+		List<WebElement> listCols = driver.findElements(By.xpath("//*[@role='table']/thead/tr/th"));
+		// iterate the rows of the table
+		  for (int i=0; i< listEle.size() ; i++) { // iterate the cols of the table
+			  for (int j =1; j<=listCols.size(); j++) {
+				  int k = i+1;
+				  try {
+					   test = listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+j+"]"));}
+					  catch(org.openqa.selenium.NoSuchElementException e) {
+						  e.printStackTrace();
+						  break;
+					  }
+				 // WebElement test = listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+j+"]"));
+		  
+				  if (searchItem.equalsIgnoreCase(test.getText())) {
+					  WebElement targeEle =
+					     listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+colIndex+"]"));
+					    
+					    if (actionRequired.equalsIgnoreCase("getText")) {
+					    	finalText = targeEle.getText();
+					    	return finalText;
+					    	
+					    }
+					    if (actionRequired.equalsIgnoreCase("clickItem")) {
+					    	targeEle.click();
+					    	finalText= "dummy";
+					    	return finalText;
+					    }
+					    
+					    
+				  } // end of if
+		    } // end of j loop
+		 	
+		} // end of for loop
+				
+		return finalText;
+	}
+	
+	public int getMatchRowNum(String baseXpath, String searchItem, int colIndex, String actionRequired) throws InterruptedException {
+		int rowNum = 0;
+		 WebElement test;
+		List<WebElement> listEle =  driver.findElements(By.xpath(baseXpath));
+		// get the number of cols
+		Thread.sleep(3000);
+		List<WebElement> listCols = driver.findElements(By.xpath("//*[@role='table']/thead/tr/th"));
+		// iterate the rows of the table
+		  for (int i=0; i< listEle.size() ; i++) { // iterate the cols of the table
+			  for (int j =1; j<=listCols.size(); j++) {
+				  int k = i+1;
+				  try {
+				   test = listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+j+"]"));}
+				  catch(org.openqa.selenium.NoSuchElementException e) {
+					  e.printStackTrace();
+					  break;
+				  }
+		  
+				  if (searchItem.equalsIgnoreCase(test.getText().trim())) {
+					  WebElement targeEle =
+					     listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+colIndex+"]"));
+					    
+					    if (actionRequired.equalsIgnoreCase("getRowNum")) {
+					    	rowNum = k;
+					    	return rowNum;
+					    }
+					    
+					    
+					    
+				  } // end of if
+		    } // end of j loop
+		 	
+		} // end of for loop
+				
+		
+		
+		return rowNum;
+		
+	}
+	
 	
 	 @BeforeClass(alwaysRun = true)
      public void setup() throws Exception {

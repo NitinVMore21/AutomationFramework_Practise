@@ -85,10 +85,11 @@ public class NavigationTest extends BaseTest {
        Thread.sleep(5000);
        String poNumber = getTextFrmTableBody("//*[@role='table']/tbody/tr","Purchase Order" , 2);
        System.out.println(poNumber);
+       handleWebTable("//*[@role='table']/tbody/tr", "Purchase Order", 0, "clickItem" );
+       
        
        // click logout 
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='navbarDropdownMenuLink']"))).click();
-     //*[@class='dropdown-menu profilebox show']/a[text()='Log out']
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='dropdown-menu profilebox show']/a[text()='Log out']"))).click();
        // click on sdie nav then click on finance and then click on po
 		/*

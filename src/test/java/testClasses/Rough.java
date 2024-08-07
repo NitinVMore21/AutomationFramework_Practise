@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
 
 import utilclasses.BaseAction;
 
-public class Scenario_2_POGenerate extends BaseTest {
+public class Rough extends BaseTest {
 
 	private WebDriverWait wait;
 	 JavascriptExecutor js;
@@ -88,23 +88,7 @@ public class Scenario_2_POGenerate extends BaseTest {
        //aria-describedby="cdk-describedby-message-46"
        // click on send po button
      
-       String campaign_ID = handleWebTable("//*[@role='table']/tbody/tr", "Quote Accepted", 2, "getText");
-       System.out.println("campaign_ID = "+campaign_ID);
-       int rowNum = getMatchRowNum("//*[@role='table']/tbody/tr", "Quote Accepted", 2, "getRowNum");
-       System.out.println("rowNum  = "+rowNum);
-      //*[@role='table']/tbody/tr[5]/td[11]/button[not(@hidden)]//img[@src='assets/images/send-for-approval.svg']
-       retryMechanism(driver.findElement(By.xpath("//table[@role=\"table\"]//tbody/tr["+rowNum+"]/td/button[not(@hidden)]//img[@src='assets/images/send-for-approval.svg']"))); 
-		
-
-       retryMechanism(driver.findElement(By.xpath("//button[@type='submit']//span[contains(text(),' Yes')]")));
-       
-       /////////////////////////////////////
-       // click on create PO
-       retryMechanism(driver.findElement(By.xpath("//table[@role='table']//tbody/tr["+rowNum+"]/td/button[not(@hidden)]//img[@src='assets/images/generate_doc_create_po.svg']"))); // hard coded value
-       //click on close (popup)
-       retryMechanism(driver.findElement(By.xpath("//*[text()='Close']")));
-       
-       // click on supporting docs link
+      // click on supporting docs link
        retryMechanism(driver.findElement(By.xpath("//*[@id='mat-tab-label-2-2']")));
        
        // get the pdf PO name from table
@@ -120,6 +104,9 @@ public class Scenario_2_POGenerate extends BaseTest {
        retryMechanism(driver.findElement(By.xpath("//span[text()=' Finance ']")));
        //click on PO Management
        retryMechanism(driver.findElement(By.xpath("//a[text()=' PO Management']")));
+       
+// fix the hover issue
+       wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search..']"))).click();
 
        
        for (int i = 0; i < 3; i++) {
@@ -131,11 +118,22 @@ public class Scenario_2_POGenerate extends BaseTest {
     	   }
 
     	    } // end of for loop
-       
+       Thread.sleep(10000);
+       int rowNum1=0;
        // code to be analysed ///////////////////////////////////////////////////////////////////////////////
-       
-       int rowNum1 = getMatchRowNum("//*[@role='table']/tbody/tr", campaign_ID, 2, "getRowNum");
+       for (int i = 0; i < 3; i++) {
+    	   try {
+        rowNum1 = getMatchRowNum("//*[@role='table']/tbody/tr", "UT01118-005", 3, "getRowNum");
        System.out.println("rownum 2 in PO section ="+rowNum1);
+       break;}
+    	   catch (StaleElementReferenceException e) {
+    		   e.printStackTrace();
+    	   }
+
+    	    } // end of for loop
+       
+       
+       
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@role='table']/tbody/tr["+rowNum1+"]/td/button//img[@src='assets/images/attach_user_guide.svg']"))).click();
        Thread.sleep(3000);
        // select the file to be uploaded send keys to below weblement
@@ -155,10 +153,10 @@ public class Scenario_2_POGenerate extends BaseTest {
        retryMechanism(driver.findElement(By.xpath("//*[@class='mat-tab-header']//div[text()='Receipt']")));
        
        // select the checkbox on receipt tab
-       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-001", 2, "clickItem");  // hard coded value
+       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-005", 2, "clickItem");  // hard coded value
        
        // click the receipt action
-       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-001", 14, "clickItem");  // hard coded value
+       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-005", 14, "clickItem");  // hard coded value
        
        // click on Close button on the popup
        retryMechanism(driver.findElement(By.xpath("//button/span[text()='Close']")));
