@@ -180,7 +180,7 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		// WebElement clck100 = driver.findElement(By.xpath("//*[contains(@class,
 		// 'mat-option-text') and normalize-space(text())='100']"));
 
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	/*	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		WebElement lastPage = driver.findElement(By.xpath("//*[@aria-label='Last Page']"));
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		js.executeScript("arguments[0].scrollIntoView();", lastPage);
@@ -193,16 +193,16 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		
 		ba.retryMechanism(driver, lastPage);
 		// ba.retryMechanism(driver, clck100);
-
+*/
 		// WebElement clck100 = driver.findElement(By.xpath("
 		// //span[normalize-space()='100']"));
 
 		// *[@class='mat-tooltip-trigger btn bg-orange cdk-focused cdk-mouse-focused']
 		// Click on manage item button
 
-		List<WebElement> listEle = driver.findElements(By.xpath("//*[@role='table']//tbody/tr"));
+		List<WebElement> listEle = driver.findElements(By.xpath("//*[@role='table']/tbody/tr"));
 
-		System.out.println(listEle.size());
+		System.out.println("row count ="+listEle.size());
 		int i;
 
 		int rowNum = getMatchRowNum("//*[@role='table']/tbody/tr", "created", 7, "getRowNum");
@@ -306,8 +306,13 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 
 		Thread.sleep(2000);
 		WebElement submitcostPrice = driver.findElement(By.xpath("//button[@type='submit']"));
+		
+		
+		
 		js.executeScript("arguments[0].scrollIntoView();", submitcostPrice);
 		ba.retryMechanism(driver, submitcostPrice);
+		
+	
 
 		System.out.println("Submit button is clicked after supplier submit");
 
