@@ -79,10 +79,17 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		driver.findElement(By.xpath("//button")).click();
 		System.out.println("submit button clicked");
 
+		
+		
+		
 		// step to click on campaign icon
 		// *[text()=' Campaigns']
 		// action class and move to element
 		Actions action = new Actions(driver);
+		
+		
+		
+		
 		// webelement for side nav
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='sideNav']"))).click();
@@ -91,21 +98,49 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		// click on workflow icon
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()=' Workflow ']"))).click();
 
+		WebElement campRetry = driver.findElement(By.xpath("//a[normalize-space()='Campaigns']"));
+		
+		while(campRetry.isDisplayed() != true) {
+			
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()=' Workflow ']"))).click();
+		}
+	
+	   // click on campaign icon
+	   wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Campaigns']"))).click();
+		
+		
+		
 		// click on campaign icon
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Campaigns']"))).click();
+		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Campaigns']"))).click();
 
-		// click on ManageCampaign button present on
-        String UTnumber = "UT01109";
-		WebElement manageCampButton = driver.findElement(By.xpath("//*[text()='"+UTnumber+"']"));
-		ba.retryMechanism(driver, manageCampButton);
+		/*
+		 * // click on ManageCampaign button present on String UTnumber = "UT01109";
+		 * WebElement manageCampButton =
+		 * driver.findElement(By.xpath("//*[text()='"+UTnumber+"']"));
+		 * ba.retryMechanism(driver, manageCampButton);
+		 */
+
+		// click on the search icon to get the context on the base page
+
+		String UTnumber = "UT01183";
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search..']"))).clear();
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search..']")))
+				.sendKeys(UTnumber);
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Search..']"))).click();
+
+		WebElement ManageCAmp = driver.findElement(By.xpath("//*[text()='" + UTnumber + "']"));
+		ba.retryMechanism(driver, ManageCAmp);
+
+		// click on Manage campaign
+		// wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='UT01118']"))).click();
 
 		// Click add item button
 		WebElement addItemButton = driver.findElement(By.xpath(
 				"//button[@class='mat-focus-indicator mat-tooltip-trigger fab-secondary mat-fab mat-button-base mat-secondary']"));
 		ba.retryMechanism(driver, addItemButton);
 
-		
-		
 		// Click ob prefilled templates
 		Thread.sleep(2000);
 		WebElement prefilledTemplates = driver.findElement(By.xpath("//span[@class='mat-button-wrapper']"));
@@ -138,30 +173,27 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 				By.xpath("//*[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']"));
 		ba.retryMechanism(driver, clickOnYes);
 
-		Thread.sleep(5000);
-
-		
-		
-		
 		// veiwAll100Entries
 
-		//WebElement Clickshow = driver.findElement(By.xpath("//div[contains(@class, 'mat-select-trigger')]//div[contains(@class, 'mat-select-value')]"));
-		//WebElement clck100 = driver.findElement(By.xpath("//*[contains(@class, 'mat-option-text') and normalize-space(text())='100']"));
-		
-		
-		
-		
-	 	/*WebElement lastPage = driver.findElement(By.xpath("//*[@aria-label='Last Page']"));
-		js.executeScript("arguments[0].scrollIntoView();", lastPage);
-		*/
-		//ba.retryMechanism(driver, Clickshow);
-		//ba.retryMechanism(driver, clck100);
+		// WebElement Clickshow = driver.findElement(By.xpath("//div[contains(@class,
+		// 'mat-select-trigger')]//div[contains(@class, 'mat-select-value')]"));
+		// WebElement clck100 = driver.findElement(By.xpath("//*[contains(@class,
+		// 'mat-option-text') and normalize-space(text())='100']"));
 
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		WebElement lastPage = driver.findElement(By.xpath("//*[@aria-label='Last Page']"));
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		js.executeScript("arguments[0].scrollIntoView();", lastPage);
+
+		while(lastPage.isEnabled() != true) {
+			
+			js.executeScript("arguments[0].scrollIntoView();", lastPage);
+			js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		}
 		
-		
-		
-		
-		
+		ba.retryMechanism(driver, lastPage);
+		// ba.retryMechanism(driver, clck100);
+
 		// WebElement clck100 = driver.findElement(By.xpath("
 		// //span[normalize-space()='100']"));
 
@@ -171,11 +203,14 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		List<WebElement> listEle = driver.findElements(By.xpath("//*[@role='table']//tbody/tr"));
 
 		System.out.println(listEle.size());
+		int i;
 
-		int i = 6;
+		int rowNum = getMatchRowNum("//*[@role='table']/tbody/tr", "created", 7, "getRowNum");
+		System.out.println("row num =" + rowNum);
+		i = rowNum;
 
-		WebElement manageItemButton = driver.findElement(
-				By.xpath("//*[@role='table']//tbody/tr["+i+"]//*[@class='mat-cell cdk-cell cdk-column-CampaignItemReference mat-column-CampaignItemReference ng-star-inserted']"));
+		WebElement manageItemButton = driver.findElement(By.xpath("//*[@role='table']//tbody/tr[" + i
+				+ "]//*[@class='mat-cell cdk-cell cdk-column-CampaignItemReference mat-column-CampaignItemReference ng-star-inserted']"));
 		js.executeScript("arguments[0].scrollIntoView();", manageItemButton);
 		// ba.retryMechanism(driver,submitCosting);
 		// WebElement manageItemButton = driver.findElement(By.xpath("//*[text()='
@@ -217,111 +252,111 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		// driver.findElements(By.xpath("//*[@role='table']//tbody/tr"));
 
 		// System.out.println(listEle.size());
-		
-		
-      // click on submit costing  Remove this 
-	 	WebElement submitCosting = driver.findElement(By.xpath("//*[@role='table']//tbody/tr[" + i
-				+ "]//img[@src='assets/images/submit-for-costing-pound.svg']"));
+
+		// click on submit costing Remove this
+		WebElement submitCosting = driver.findElement(By.xpath(
+				"//*[@role='table']//tbody/tr[" + i + "]//img[@src='assets/images/submit-for-costing-pound.svg']"));
 		js.executeScript("arguments[0].scrollIntoView();", submitCosting);
 		ba.retryMechanism(driver, submitCosting);
 		//// tbody/tr[9]/td[11]/button[2]/span[1]/div[1]/img[1]
 		// *[@role='table']//tbody/tr
 		Thread.sleep(2000);
-     
+
 		// Submit supplier price
-		WebElement SupplierPrice = driver
-				.findElement(By.xpath("//*[@role='table']//tbody/tr["+i+"]//img[@src='assets/images/view-supplier-price.svg']"));
+		WebElement SupplierPrice = driver.findElement(
+				By.xpath("//*[@role='table']//tbody/tr[" + i + "]//img[@src='assets/images/view-supplier-price.svg']"));
 		js.executeScript("arguments[0].scrollIntoView();", SupplierPrice);
 		ba.retryMechanism(driver, SupplierPrice);
 
 		// Select Paragon Dagenham from searchbox
-        
+
 		WebElement ClickSearchBox = driver.findElement(By.xpath("//*[@id='SsupplierId']"));
-		//js.executeScript("arguments[0].scrollIntoView();", ClickSearchBox);
+		// js.executeScript("arguments[0].scrollIntoView();", ClickSearchBox);
 		ba.retryMechanism(driver, ClickSearchBox);
-		WebElement Search = driver.findElement(By.xpath("//input[@class='mat-input-element mat-form-field-autofill-control mat-select-search-input cdk-text-field-autofill-monitored']"));
-		
+		WebElement Search = driver.findElement(By.xpath(
+				"//input[@class='mat-input-element mat-form-field-autofill-control mat-select-search-input cdk-text-field-autofill-monitored']"));
+
 		ba.retryMechanismWithSendKeys(driver, Search, "Paragon");
-		
+
 		WebElement selectDagenham = driver.findElement(By.xpath("//span[contains(text(),'Paragon CC (Dagenham)')]"));
-		//js.executeScript("arguments[0].scrollIntoView();", selectDagenham);
-		//ba.retryMechanismWithSendKeys(driver, ClickSearchBox, "paragon CC (Dagenham)");
+		// js.executeScript("arguments[0].scrollIntoView();", selectDagenham);
+		// ba.retryMechanismWithSendKeys(driver, ClickSearchBox, "paragon CC
+		// (Dagenham)");
 		ba.retryMechanism(driver, selectDagenham);
 
 		// //enter estimate ref no
-        Thread.sleep(2000);
-		WebElement enterEstimateRefNo = driver
-				.findElement(By.xpath("//input[@id='f']"));
+		Thread.sleep(2000);
+		WebElement enterEstimateRefNo = driver.findElement(By.xpath("//input[@id='f']"));
 		ba.retryMechanismWithSendKeys(driver, enterEstimateRefNo, "ERN09876");
 
-		 Thread.sleep(2000);
-		 
+		Thread.sleep(2000);
+
 		WebElement deliveryCost = driver.findElement(By.xpath("(//input[@id='qt'])[1]"));
 		ba.retryMechanismWithSendKeys(driver, deliveryCost, "123");
 
 		Thread.sleep(2000);
 		WebElement PaperCost = driver.findElement(By.xpath("(//input[@id='qt'])[2]"));
-		//js.executeScript("arguments[0].scrollIntoView();", PaperCost);
+		// js.executeScript("arguments[0].scrollIntoView();", PaperCost);
 		ba.retryMechanismWithSendKeys(driver, PaperCost, "1234");
-     
+
 		Thread.sleep(2000);
 		WebElement production = driver.findElement(By.xpath("(//input[@id='qt'])[3]"));
-		//js.executeScript("arguments[0].scrollIntoView();", production);
+		// js.executeScript("arguments[0].scrollIntoView();", production);
 		ba.retryMechanismWithSendKeys(driver, production, "12");
- 
+
 		Thread.sleep(2000);
 		WebElement submitcostPrice = driver.findElement(By.xpath("//button[@type='submit']"));
 		js.executeScript("arguments[0].scrollIntoView();", submitcostPrice);
 		ba.retryMechanism(driver, submitcostPrice);
-		
+
 		System.out.println("Submit button is clicked after supplier submit");
-		
-		
-		
-		//click on manage prices
-		WebElement ClckManagePrice = driver.findElement(By.xpath("//*[@role='table']//tbody/tr["+i+"]//img[@src='assets/images/submit-supplier-price.svg']"));
+
+		// click on manage prices
+		WebElement ClckManagePrice = driver.findElement(By
+				.xpath("//*[@role='table']//tbody/tr[" + i + "]//img[@src='assets/images/submit-supplier-price.svg']"));
 		js.executeScript("arguments[0].scrollIntoView();", ClckManagePrice);
 		ba.retryMechanism(driver, ClckManagePrice);
-		
+
+		Thread.sleep(2000);
 		WebElement checkBox = driver.findElement(By.xpath("//span[@class='mat-checkbox-frame']"));
+		js.executeScript("arguments[0].scrollIntoView();", checkBox);
 		checkBox.click();
-		
-		
-		
-WebElement manageQuoteButton = driver.findElement(By.xpath("//i[@class='fas fa-chevron-circle-right fa-3x']"));
+
+		WebElement manageQuoteButton = driver.findElement(By.xpath("//i[@class='fas fa-chevron-circle-right fa-3x']"));
 		ba.retryMechanism(driver, manageQuoteButton);
-		
-WebElement markup = driver.findElement(By.xpath("//input[@name='markUp']"));
-		ba.retryMechanismWithSendKeys(driver, markup,"10");
-		
-		
+
+		WebElement markup = driver.findElement(By.xpath("//input[@name='markUp']"));
+		ba.retryMechanismWithSendKeys(driver, markup, "10");
+
 		WebElement generateQuote = driver.findElement(By.xpath("//i[@class='fas fa-chevron-circle-right fa-3x']"));
 		ba.retryMechanism(driver, generateQuote);
-		
-		
-		
-		//Click on Quote Management
+
+		// Click on Quote Management
 		WebElement quoteManagement = driver.findElement(By.xpath("//div[contains(text(),'Quote Management')]"));
 		ba.retryMechanism(driver, quoteManagement);
-		
-		//click on 1st quote
-		WebElement quote1 = driver.findElement(By.xpath("//a[normalize-space()='"+UTnumber+"-Q-008']"));
+
+		// click on 1st quote
+
+		List<WebElement> quoteTableEntries = driver.findElements(By.xpath("//*[@role='table']//tbody/tr"));
+
+		System.out.println(quoteTableEntries.size());
+		int j = quoteTableEntries.size();
+		WebElement quote1 = driver
+				.findElement(By.xpath("//*[@role='table']//tbody/tr[" + j + "]//a[@class='btn bg-orange']"));
+		// WebElement quote1 =
+		// driver.findElement(By.xpath("//a[normalize-space()='"+UTnumber+"-Q-008']"));
 		ba.retryMechanism(driver, quote1);
-		
-		
-		//click on radio button to select the quote and accept
+
+		// click on radio button to select the quote and accept
 		Thread.sleep(2000);
 		WebElement ClickRadioB = driver.findElement(By.xpath("//span[@class='mat-radio-outer-circle']"));
 		js.executeScript("arguments[0].scrollIntoView();", ClickRadioB);
 		ClickRadioB.click();
-		
-		
+
 		WebElement acceptQuote = driver.findElement(By.xpath("//button[normalize-space()='Accept Selected']"));
 		ba.retryMechanism(driver, acceptQuote);
-		
 
-		
-		//click on final accept
+		// click on final accept
 		WebElement finalAccept = driver.findElement(By.xpath("//*[text()='Accept Quote']"));
 		ba.retryMechanism(driver, finalAccept);
 	}
