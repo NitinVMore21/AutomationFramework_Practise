@@ -123,7 +123,7 @@ public class Rough extends BaseTest {
        // code to be analysed ///////////////////////////////////////////////////////////////////////////////
        for (int i = 0; i < 3; i++) {
     	   try {
-        rowNum1 = getMatchRowNum("//*[@role='table']/tbody/tr", "UT01118-005", 3, "getRowNum");
+        rowNum1 = getMatchRowNum("//*[@role='table']/tbody/tr", "UT01118-002", 3, "getRowNum");
        System.out.println("rownum 2 in PO section ="+rowNum1);
        break;}
     	   catch (StaleElementReferenceException e) {
@@ -138,7 +138,7 @@ public class Rough extends BaseTest {
        Thread.sleep(3000);
        // select the file to be uploaded send keys to below weblement
      //*[@id='supportingDocumentFileUpload']
-       driver.findElement(By.xpath("//*[@id='supportingDocumentFileUpload']")).sendKeys("C:\\Users\\gaurav.shukla.ESPIRE\\Downloads\\ePO000896-LEADGB_V1.pdf");
+       driver.findElement(By.xpath("//*[@id='supportingDocumentFileUpload']")).sendKeys("C:\\Users\\rahul\\Downloads\\ePO000895-LEADGB_V1.pdf");
        // enter comments inthe text area
      //*[@id='supportingDocumentDescription']
        driver.findElement(By.xpath("//*[@id='supportingDocumentDescription']")).sendKeys("Coments");
@@ -153,10 +153,10 @@ public class Rough extends BaseTest {
        retryMechanism(driver.findElement(By.xpath("//*[@class='mat-tab-header']//div[text()='Receipt']")));
        
        // select the checkbox on receipt tab
-       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-005", 2, "clickItem");  // hard coded value
+       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-002", 2, "clickItem");  // hard coded value
        
        // click the receipt action
-       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-005", 14, "clickItem");  // hard coded value
+       handleWebTable("//*[@role='table']/tbody/tr", "UT01118-002", 14, "clickItem");  // hard coded value
        
        // click on Close button on the popup
        retryMechanism(driver.findElement(By.xpath("//button/span[text()='Close']")));

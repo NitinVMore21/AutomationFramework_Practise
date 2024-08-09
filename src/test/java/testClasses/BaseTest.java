@@ -109,7 +109,7 @@ public class BaseTest {
 
          } catch (Exception e) {
              // Not clickable, maybe retry?
-
+        	 e.printStackTrace();
         	 System.out.println("RETRY done " +attempt);
              attempt++; // Increment the attempt count
 
@@ -175,8 +175,7 @@ public class BaseTest {
 						  break;
 					  }
 				 // WebElement test = listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+j+"]"));
-		  
-				  if (searchItem.equalsIgnoreCase(test.getText())) {
+				   if (searchItem.equalsIgnoreCase(test.getText().trim())) {
 					  WebElement targeEle =
 					     listEle.get(i).findElement(By.xpath(baseXpath+"["+k+"]"+"/td["+colIndex+"]"));
 					    
