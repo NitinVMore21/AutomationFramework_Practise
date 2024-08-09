@@ -204,8 +204,8 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 
 		System.out.println("row count ="+listEle.size());
 		int i;
-
-		int rowNum = getMatchRowNum("//*[@role='table']/tbody/tr", "created", 7, "getRowNum");
+		Thread.sleep(3000);
+		int rowNum = getMatchRowNum("//*[@role='table']/tbody/tr", "Created", 7, "getRowNum");
 		System.out.println("row num =" + rowNum);
 		i = rowNum;
 
@@ -323,7 +323,9 @@ public class Scenario1_CreateCampaign_LineItem extends BaseTest {
 		ba.retryMechanism(driver, ClckManagePrice);
 
 		Thread.sleep(2000);
-		WebElement checkBox = driver.findElement(By.xpath("//span[@class='mat-checkbox-frame']"));
+		//campaign-item-supplier-price-table[@class='ng-star-inserted']//span[@class='mat-checkbox-inner-container mat-checkbox-inner-container-no-side-margin']
+		//WebElement checkBox = driver.findElement(By.xpath("//span[@class='mat-checkbox-frame']"));
+		WebElement checkBox = driver.findElement(By.xpath("//campaign-item-supplier-price-table[@class='ng-star-inserted']//span[@class='mat-checkbox-inner-container mat-checkbox-inner-container-no-side-margin']"));
 		js.executeScript("arguments[0].scrollIntoView();", checkBox);
 		checkBox.click();
 
