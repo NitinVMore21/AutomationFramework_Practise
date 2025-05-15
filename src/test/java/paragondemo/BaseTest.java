@@ -58,10 +58,8 @@ public class BaseTest {
 			loadProperties();
 			initBrowser();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	        
@@ -71,7 +69,7 @@ public class BaseTest {
 	
 	
 	public void instantiatePOMClasses() {
-		// instantiate the pom classes
+
 		cob = new CheckBoxPage(driver);
 		
 		rob = new RadioButtonPage(driver);

@@ -25,7 +25,7 @@ public class FaviconURL {
 		
 		driver.manage().window().maximize(); 
 		
-		driver.get("https://ess.espire.com/dashboard");
+		driver.get("https://www.facebook.com/signup");
 		
         // Locate the favicon element
         WebElement faviconElement = driver.findElement(By.xpath("//link[@rel='icon' or @rel='shortcut icon']"));

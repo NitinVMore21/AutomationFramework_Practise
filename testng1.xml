@@ -5,6 +5,7 @@
 		<listener class-name="utilclasses.TestListener">
 		</listener>
 	</listeners>
+	<test thread-count="5" name="Test">
     <classes>
 	  <class name="testClasses.TextBoxTest"/>
 	  <class name="testClasses.CheckBoxTest"/>
@@ -12,5 +13,5 @@
       <class name="testClasses.WebTablesTest"/>
       <class name="testClasses.ButtonsTest"/>
     </classes>
-  </test> <!-- Test -->
+     </test>
 </suite> <!-- Suite -->

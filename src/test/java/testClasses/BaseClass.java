@@ -28,6 +28,8 @@ import pageClasses.CheckoutPage;
 import pageClasses.RadioButtonPage;
 import pageClasses.TextBoxPage;
 import pageClasses.WebTablePage;
+import tdstpageclasses.AgentRegistration;
+import tdstpageclasses.AgentRegistrationOrg;
 import utilclasses.EmailUtil;
 
 public class BaseClass {
@@ -45,6 +47,8 @@ public class BaseClass {
 	public ButtonsPage bp;
 	public WebTablePage wtb;
 	public Properties prop;
+	public AgentRegistration ar;
+	public AgentRegistrationOrg aro;
 	
 
 
@@ -54,7 +58,7 @@ public class BaseClass {
         initBrowser();
         driver.manage().window().maximize();
         driver.get(prop.getProperty("testurl"));
-        performInitialActions();
+//        performInitialActions();
     }
 
     public void loadProperties() throws IOException {
@@ -71,9 +75,9 @@ public class BaseClass {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--remote-allow-origins=*");
-                chromeOptions.addArguments("--headless");
+              chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
-                chromeOptions.setHeadless(true);
+              chromeOptions.setHeadless(true);
                 break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
@@ -96,13 +100,13 @@ public class BaseClass {
         return driver;
     }
 
-    private void performInitialActions() throws InterruptedException {
-        js = (JavascriptExecutor) driver;
-        WebElement element = driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M16 132h41')]"));
-        js.executeScript("arguments[0].scrollIntoView();", element);
-        element.click();
-        Thread.sleep(2000);
-    }
+//    private void performInitialActions() throws InterruptedException {
+//        js = (JavascriptExecutor) driver;
+//        WebElement element = driver.findElement(By.xpath("//*[name()='path' and contains(@d,'M16 132h41')]"));
+//        js.executeScript("arguments[0].scrollIntoView();", element);
+//        element.click();
+//        Thread.sleep(2000);
+//    }
 	
 	@BeforeMethod
 	
@@ -110,15 +114,19 @@ public class BaseClass {
 	{ 
 		//cop = new CheckTextoutPage(driver);
 		
-		cob = new CheckBoxPage(driver);
+//		cob = new CheckBoxPage(driver);
+//		
+//		rob = new RadioButtonPage(driver);
+//		
+//	    tbp = new TextBoxPage(driver);
+//	    
+//	    bp = new ButtonsPage(driver);
+//	    
+//	    wtb = new WebTablePage(driver);
 		
-		rob = new RadioButtonPage(driver);
+		ar = new AgentRegistration(driver);
 		
-	    tbp = new TextBoxPage(driver);
-	    
-	    bp = new ButtonsPage(driver);
-	    
-	    wtb = new WebTablePage(driver);
+		aro = new AgentRegistrationOrg(driver);
 	}
 	
 	@AfterClass
@@ -130,18 +138,18 @@ public class BaseClass {
 		}
 	}
 	
-    @AfterSuite
-    public void sendReport() {
-    	
-    	String extentReportPath = EXTENT_REPORTS_PATH ;
-        String excelReportPath = "D:\\eclipse_workspace\\Automation_Practise\\AutomationFramework_Practise\\TestCases_Report.xlsx" ; //
-        String toEmail = "gauravshukla01@gmail.com"; // gauravshukla01@gmail.com
-        String fromEmail = "nitinvmore1981@gmail.com";
-        String host = "smtp.gmail.com"; //"smtp-mail.outlook.com" smtp.office365.com smtp.gmail.com
-        String subject = "TestNG Report";
-        String body = "Please find the attached Extent Report.";
-
-        EmailUtil.sendEmailWithReport(excelReportPath,extentReportPath, toEmail, fromEmail, host, subject, body);
-    }
+//    @AfterSuite
+//    public void sendReport() {
+//    	
+//    	String extentReportPath = EXTENT_REPORTS_PATH ;
+//        String excelReportPath = "D:\\eclipse_workspace\\Automation_Practise\\AutomationFramework_Practise\\TestCases_Report.xlsx" ; //
+//        String toEmail = "gauravshukla01@gmail.com"; // gauravshukla01@gmail.com
+//        String fromEmail = "nitinvmore1981@gmail.com";
+//        String host = "smtp.gmail.com"; //"smtp-mail.outlook.com" smtp.office365.com smtp.gmail.com
+//        String subject = "TestNG Report";
+//        String body = "Please find the attached Extent Report.";
+//
+//        EmailUtil.sendEmailWithReport(excelReportPath,extentReportPath, toEmail, fromEmail, host, subject, body);
+//    }
 
 }

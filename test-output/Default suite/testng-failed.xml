@@ -3,14 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="paragondemo.Create_CampaignClass">
+      <class name="democlasses.DemoAmazonTest">
         <methods>
-          <include name="createObject"/>
-          <include name="Automate"/>
-          <include name="setup"/>
-          <include name="sendReport"/>
+          <include name="amazonTest"/>
         </methods>
-      </class> <!-- paragondemo.Create_CampaignClass -->
+      </class> <!-- democlasses.DemoAmazonTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
